@@ -1,4 +1,5 @@
 'use strict';
+const createTimestampId = require('../helpers/createTimestampId')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,7 +8,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        defaultValue: new Date().getTime()
+        defaultValue: createTimestampId()
       },
       name: {
         type: Sequelize.STRING,
