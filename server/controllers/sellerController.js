@@ -1,4 +1,4 @@
-const { Seller } = require('../models')
+const { Seller, Product } = require('../models')
 const generatePayload = require('../helpers/generatePayload')
 const uuid4 = require('uuid4')
 
@@ -48,4 +48,33 @@ const deleteSeller = async (req, res, next) => {
     }
 }
 
-module.exports = { addSeller, editSeller, deleteSeller}
+const getSeller = async (req, res, next) => {
+    try {
+        // const { seller_code } = req.params
+        // if (!seller_code) throw { name: "BAD_REQUEST", message: 'Seller uuid is required'}
+
+        // const response  = await Seller.destroy({ where: { seller_code }})
+        // if (!response) throw err
+
+        // res.status(200).json({ message: 'OK' })
+        const response = await Seller.findAll({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            },
+            include: {
+                model: Product,
+                as: 'products',
+                key: 'seller_uuid'
+            },
+
+        })
+
+        const payload = generatePayload(response, 'Success')
+
+        res.status(200).json(payload)
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = { addSeller, editSeller, deleteSeller, getSeller }

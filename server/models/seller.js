@@ -7,7 +7,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Seller extends Model {
     static associate(models) {
-      Seller.hasMany(models.Product, { foreignKey: 'seller_uuid' })
+      Seller.hasMany(models.Product, { as: 'products', foreignKey: 'seller_uuid'})
     }
   }
   Seller.init({
