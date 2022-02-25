@@ -1,4 +1,6 @@
 'use strict';
+const uuid4 = require('uuid4')
+
 const {
   Model
 } = require('sequelize');
@@ -9,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Seller.init({
+    seller_code: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: uuid4()
+    },
     seller_name: {
       type: DataTypes.STRING,
       allowNull: false

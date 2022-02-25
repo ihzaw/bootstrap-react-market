@@ -1,10 +1,9 @@
 'use strict';
 const uuid4 = require('uuid4')
-console.log(uuid4())
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Sellers', {
-      seller_code: {
+      id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,

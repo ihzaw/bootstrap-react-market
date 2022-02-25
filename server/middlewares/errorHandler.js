@@ -1,4 +1,5 @@
 const errorHandler = (err, req, res, next) => {
+    console.log(err)
     const { name, message } = err
     switch (name) {
         case 'SOMETHING':
