@@ -1,16 +1,14 @@
-import { Col, Card, Button } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
 
-export const ProductCard = () => {
+export const ProductCard = ({ product }) => {
   return (
-    <Col style={{marginTop: 20}}>
+    <Col style={{ marginTop: 20 }}>
       <Card>
+          <Card.Img variant="left" src={product.imageUrl} />
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Title>{product.name}</Card.Title>
+          <Card.Text>{product.price}</Card.Text>
+          <Button variant="secondary">Delete</Button>
         </Card.Body>
       </Card>
     </Col>
